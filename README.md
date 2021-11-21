@@ -24,8 +24,8 @@ Evaluation](https://gluebenchmark.com/)
 
 ### 使用
 - 下载[GLUE数据集](https://gluebenchmark.com/)和bert预训练的权重(这里使用的是[Google原版bert](https://github.com/google-research/bert))到指定文件夹；
-- 例如：训练CoLA，直接 python CoLA.py
+- 例如：训练CoLA，直接运行 `python CoLA.py`。
 
 ### 环境
-- 软件：bert4keras>=0.10.8, tensorflow = 1.15.0, keras = 2.3.1
+- 软件：bert4keras>=0.10.8, tensorflow = 1.15.0, keras = 2.3.1；
 - 硬件：结果是用一张RTX 2080（12G）跑出来的。
