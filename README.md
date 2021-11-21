@@ -20,7 +20,7 @@ Evaluation](https://gluebenchmark.com/)
 | MNLI  | Matched acc./Mismatched acc. | 83.91/84.10 |        |
 | QNLI  | Accuracy                     | 90.66       |91.42          |
 | RTE   | Accuracy                     | 65.70       |69.68          |
-| WNLI  | Accuracy                     | 56.34       |            |
+| WNLI  | Accuracy                     | 56.34       |56.34          |
 
 ### 使用
 - 下载[GLUE数据集](https://gluebenchmark.com/)和bert预训练的权重(这里使用的是[Google原版bert](https://github.com/google-research/bert))到指定文件夹；
