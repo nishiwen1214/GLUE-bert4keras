@@ -1,4 +1,10 @@
 # 基于bert4keras的GLUE基准代码
+
+引用[苏神博客](https://kexue.fm/archives/8739)中的话：“事实上，不管是tensorflow还是pytorch，不管是CLUE还是GLUE，笔者认为能找到的baseline代码，都很难称得上人性化，试图去理解它们是一件相当痛苦的事情。” (附上苏神的中文[CLUE基准代码](https://github.com/bojone/CLUE-bert4keras))
+
+本人也是感同身受，既然有了中文的CLUE基准代码，那么所以英文的GLUE基准代码也得搞一个，所以决定基于bert4keras实现一套GLUE的baseline。经过测试，基本上复现了Huggingface的基准成绩，并且可以说有些任务还更优。最重要的是，所有代码尽量保持了清晰易读的特点（bert4keras的最大特点）。
+
+
 GLUE benchmark: [General Language Understanding
 Evaluation](https://gluebenchmark.com/)
 
