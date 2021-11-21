@@ -16,7 +16,7 @@ Evaluation](https://gluebenchmark.com/)
 | SST-2 | Accuracy                     | 92.32       | 92.89         |
 | MRPC  | F1/Accuracy                  | 88.85/84.07 | 88.53/84.17   |
 | STS-B | Pearson/Spearman corr.       | 88.64/88.48 |           |
-| QQP   | Accuracy/F1                  | 90.71/87.49 |       |
+| QQP   | Accuracy/F1                  | 90.71/87.49 | 90.81/87.66   |
 | MNLI  | Matched acc./Mismatched acc. | 83.91/84.10 |        |
 | QNLI  | Accuracy                     | 90.66       | 91.42         |
 | RTE   | Accuracy                     | 65.70       | 69.68         |
