@@ -23,7 +23,7 @@ Evaluation](https://gluebenchmark.com/)
 | WNLI  | Accuracy                     | 56.34       |            |
 
 ### 使用
-- 下载GLUE数据集和bert预训练的权重(这里使用的是谷歌的预训练权重)到指定文件夹；
+- 下载[GLUE数据集](https://gluebenchmark.com/)和bert预训练的权重(这里使用的是[Google原版bert](https://github.com/google-research/bert))到指定文件夹；
 - 例如：训练CoLA，直接 python CoLA.py
 
 ### 环境
