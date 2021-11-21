@@ -19,7 +19,7 @@ Evaluation](https://gluebenchmark.com/)
 | QQP   | Accuracy/F1                  | 90.71/87.49 |       |
 | MNLI  | Matched acc./Mismatched acc. | 83.91/84.10 |        |
 | QNLI  | Accuracy                     | 90.66       |         |
-| RTE   | Accuracy                     | 65.70       |             |
+| RTE   | Accuracy                     | 65.70       |69.68          |
 | WNLI  | Accuracy                     | 56.34       |            |
 
 ### 使用
