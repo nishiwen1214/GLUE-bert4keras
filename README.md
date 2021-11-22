@@ -4,9 +4,10 @@
 
 本人也是感同身受，既然有了中文CLUE基准代码，那么英文GLUE基准代码也得搞一个，所以决定基于bert4keras实现一套GLUE的baseline。经过测试，基本上复现了Huggingface的基准成绩，并且可以说有些任务还更优。最重要的是，所有代码尽量保持了清晰易读的特点（bert4keras的最大特点）。
 
-
 GLUE benchmark: [General Language Understanding
 Evaluation](https://gluebenchmark.com/)
+
+### 欢迎star和提问～
 
 ### 实验结果：
 
