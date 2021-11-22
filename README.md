@@ -17,7 +17,7 @@ Evaluation](https://gluebenchmark.com/)
 | MRPC  | F1/Accuracy                  | 88.85/84.07 | 88.53/84.17   |
 | STS-B | Pearson/Spearman corr.       | 88.64/88.48 | 89.31/88.90   |
 | QQP   | Accuracy/F1                  | 90.71/87.49 | 90.81/87.66   |
-| MNLI  | Matched acc./Mismatched acc. | 83.91/84.10 |        |
+| MNLI  | Matched acc./Mismatched acc. | 83.91/84.10 | 84.02/84.24   |
 | QNLI  | Accuracy                     | 90.66       | 91.42         |
 | RTE   | Accuracy                     | 65.70       | 69.68         |
 | WNLI  | Accuracy                     | 56.34       | 56.34         |
