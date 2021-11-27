@@ -9,6 +9,8 @@ Evaluation](https://gluebenchmark.com/)
 
 ### 欢迎star和提问～
 
+### 之后会增加test set的预测代码和评估结果
+
 ### 实验结果：
 
 | Task  | Metric                       | [BERT-base (Huggingface)](https://github.com/huggingface/transformers/tree/master/examples/pytorch/text-classification?fbclid=IwAR0Y4_Eer7ovaEJpRMpE1S91AsrOdEK97-iah6mupW9RATs2XMPVzQZCNz8) | [BERT-base (Our)](https://github.com/nishiwen1214/GLUE-bert4keras)|
