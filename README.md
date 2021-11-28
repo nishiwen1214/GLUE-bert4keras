@@ -25,6 +25,7 @@ Evaluation](https://gluebenchmark.com/)
 | WNLI  | Accuracy                     | 56.34       | 56.34         |
 
 - test set:
+<img width="1367" alt="image" src="https://user-images.githubusercontent.com/56249874/143742252-4a2d69ba-2f6a-4989-a5f8-f69e1db56691.png">
 <img width="924" alt="image" src="https://user-images.githubusercontent.com/56249874/143735793-762babad-f43b-482e-87b5-61210720a34f.png">
 
 ### 使用
