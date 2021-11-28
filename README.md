@@ -10,6 +10,7 @@ Evaluation](https://gluebenchmark.com/)
 ### 欢迎star和提问～
 
 ### 实验结果：
+- val set:
 
 | Task  | Metric                       | [BERT-base (Huggingface)](https://github.com/huggingface/transformers/tree/master/examples/pytorch/text-classification?fbclid=IwAR0Y4_Eer7ovaEJpRMpE1S91AsrOdEK97-iah6mupW9RATs2XMPVzQZCNz8) | [BERT-base (Our)](https://github.com/nishiwen1214/GLUE-bert4keras)|
 |-------|------------------------------|-------------|---------------|
@@ -22,6 +23,9 @@ Evaluation](https://gluebenchmark.com/)
 | QNLI  | Accuracy                     | 90.66       | 91.42         |
 | RTE   | Accuracy                     | 65.70       | 69.68         |
 | WNLI  | Accuracy                     | 56.34       | 56.34         |
+
+- test set:
+<img width="924" alt="image" src="https://user-images.githubusercontent.com/56249874/143735793-762babad-f43b-482e-87b5-61210720a34f.png">
 
 ### 使用
 - 下载[GLUE数据集](https://gluebenchmark.com/)和bert预训练的权重(这里使用的是[Google原版bert](https://github.com/google-research/bert))到指定文件夹；
