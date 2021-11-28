@@ -11,7 +11,11 @@ from bert4keras.optimizers import Adam
 from bert4keras.snippets import sequence_padding, DataGenerator
 from bert4keras.snippets import open
 from keras.layers import Dropout, Dense
-
+import os
+from tqdm import tqdm
+import csv
+# 选择使用第几张GPU卡，'0'为第一张
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 set_gelu('tanh')  # 切换gelu版本
 
@@ -37,6 +41,20 @@ def load_data(filename):
                 D.append((text1, text2, int(label)))
     return D
 
+def load_data_test(filename):
+    """加载数据
+    单条格式：(文本1, 文本2, 标签id)
+    """
+    D = []
+    i = 1
+    with open(filename, encoding='utf-8') as f:
+        for l in f:
+            if i == 1: # 跳过数据第一行
+                i = 2
+            else:
+                _, text1, text2 = l.strip().split('\t')
+                D.append((text1, text2, 0))
+    return D
 # 加载数据集
 train_data = load_data(
     './datasets/WNLI/train.tsv'
@@ -122,7 +140,27 @@ class Evaluator(keras.callbacks.Callback):
             (val_acc, self.best_val_acc)
         )
 
+def test_predict(in_file, out_file):
+    """输出测试结果到文件
+    结果文件可以提交到 https://gluebenchmark.com 评测。
+    """
+    test_data = load_data_test(in_file)
+    test_generator = data_generator(test_data, batch_size)
 
+    results = []
+    for x_true, _ in tqdm(test_generator, ncols=0):
+        y_pred = model.predict(x_true).argmax(axis=1)
+        results.extend(y_pred)
+        
+    with open(out_file,'w',encoding='utf-8') as f:
+        csv_writer = csv.writer(f, delimiter='\t')
+        csv_writer.writerow(["index","prediction"])
+        # 写入tsv文件内容
+        for i, pred in enumerate(results):
+            csv_writer.writerow([i,pred])
+        # 关闭文件
+    f.close()
+    
 if __name__ == '__main__':
 
     evaluator = Evaluator()
@@ -134,6 +172,13 @@ if __name__ == '__main__':
         callbacks=[evaluator]
     )
 
+    model.load_weights('best_model_WNLI.weights')
+#   预测测试集，输出到结果文件
+    test_predict(
+        in_file = './datasets/WNLI/test.tsv',
+        out_file = './results/WNLI.tsv'
+    )
+    
 else:
 
     model.load_weights('best_model_WNLI.weights')
