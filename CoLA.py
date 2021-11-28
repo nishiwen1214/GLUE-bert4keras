@@ -1,7 +1,7 @@
 #! -*- coding:utf-8 -*-
 # https://github.com/nishiwen1214/GLUE-bert4keras
 # 数据集：CoLA 
-# MCC: 60.066
+# MCC: 61.53
 # 适用于Keras 2.3.1
 
 import json
@@ -11,10 +11,11 @@ from bert4keras.tokenizers import Tokenizer
 from bert4keras.models import build_transformer_model
 from bert4keras.optimizers import Adam
 from bert4keras.snippets import sequence_padding, DataGenerator
-from keras.layers import Lambda, Dense
+from keras.layers import Dropout, Dense
 from tqdm import tqdm
-from sklearn import metrics
+from sklearn.metrics import matthews_corrcoef
 import numpy as np
+import csv
 import os
 # 选择使用第几张GPU卡，'0'为第一张
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
@@ -40,6 +41,21 @@ def load_data(filename):
             D.append((text,int(label)))
     return D
 
+def load_data_test(filename):
+    """加载test数据
+    单条格式：(文本, 标签id)
+    """
+    D = []
+    i = 1
+    with open(filename, encoding='utf-8') as f:
+        for l in f:
+            if i == 1: # 跳过数据第一行
+                i = 2
+            else:
+                _,text = l.strip().split('\t')
+                D.append((text, 0))
+    return D
+
 # 加载数据集
 train_data = load_data(
     './datasets/CoLA/train.tsv'
@@ -47,7 +63,7 @@ train_data = load_data(
 valid_data = load_data(
     './datasets/CoLA/dev.tsv'
 )
-
+        
 # 建立分词器
 tokenizer = Tokenizer(dict_path, do_lower_case=True)
 
@@ -78,14 +94,13 @@ valid_generator = data_generator(valid_data, batch_size)
 bert = build_transformer_model(
     config_path=config_path,
     checkpoint_path=checkpoint_path,
+    with_pool=True,
     return_keras_model=False,
 )
 
-output = Lambda(lambda x: x[:, 0])(bert.model.output)
+output = Dropout(rate=0.1)(bert.model.output)
 output = Dense(
-    units=num_classes,
-    activation='softmax',
-    kernel_initializer=bert.initializer
+    units=2, activation='softmax', kernel_initializer=bert.initializer
 )(output)
 
 model = keras.models.Model(bert.model.input, output)
@@ -109,26 +124,8 @@ def evaluate(data):
         total += len(y_true)
         right += (y_true == y_pred).sum()
  
-    mcc = matthews_correlation(y_true_all, y_pred_all)
+    mcc = matthews_corrcoef(y_true_all, y_pred_all)
     return right / total, mcc
-
-def matthews_correlation(y_true, y_pred):
-    y_pred_pos = K.round(K.clip(y_pred, 0, 1))
-    y_pred_neg = 1 - y_pred_pos
-
-    y_pos = K.round(K.clip(y_true, 0, 1))
-    y_neg = 1 - y_pos
-
-    tp = K.sum(y_pos * y_pred_pos)
-    tn = K.sum(y_neg * y_pred_neg)
-
-    fp = K.sum(y_neg * y_pred_pos)
-    fn = K.sum(y_pos * y_pred_neg)
-
-    numerator = K.eval((tp * tn - fp * fn))
-    denominator = K.eval(((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn)))** 0.5
-
-    return numerator / (denominator + K.epsilon())
 
 class Evaluator(keras.callbacks.Callback):
     """评估与保存
@@ -146,6 +143,27 @@ class Evaluator(keras.callbacks.Callback):
             (val_acc, mcc, self.best_val_mcc)
         )
 
+def test_predict(in_file, out_file):
+    """输出测试结果到文件
+    结果文件可以提交到 https://gluebenchmark.com 评测。
+    """
+    test_data = load_data_test(in_file)
+    test_generator = data_generator(test_data, batch_size)
+
+    results = []
+    for x_true, _ in tqdm(test_generator, ncols=0):
+        y_pred = model.predict(x_true).argmax(axis=1)
+        results.extend(y_pred)
+        
+    with open(out_file,'w',encoding='utf-8') as f:
+        csv_writer = csv.writer(f, delimiter='\t')
+        csv_writer.writerow(["index","prediction"])
+        # 写入tsv文件内容
+        for i, pred in enumerate(results):
+            csv_writer.writerow([i,pred])
+        # 关闭文件
+    f.close()
+
 
 if __name__ == '__main__':
 
@@ -157,7 +175,14 @@ if __name__ == '__main__':
         epochs=10,
         callbacks=[evaluator]
     )
-
+    
+    model.load_weights('best_model_CoLA.weights')
+#   预测测试集，输出到结果文件
+    test_predict(
+        in_file = './datasets/CoLA/test.tsv',
+        out_file = './results/CoLA.tsv'
+    )
+                     
 else:
 
     model.load_weights('best_model_CoLA.weights')
