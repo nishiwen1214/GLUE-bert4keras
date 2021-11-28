@@ -13,6 +13,8 @@ from bert4keras.snippets import open
 from keras.layers import Dropout, Dense
 from sklearn import metrics
 import numpy as np
+from tqdm import tqdm
+import csv
 import os
 # 使用第二张GPU卡，'0'为第一张
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
@@ -37,8 +39,24 @@ def load_data(filename):
             if i == 1: # 跳过数据第一行
                 i = 2
             else:
-                label,_,_, text1, text2,  = l.strip().split('\t')
+                label,_,_, text1, text2  = l.strip().split('\t')
                 D.append((text1, text2, int(label)))
+    return D
+
+
+def load_data_test(filename):
+    """加载test数据
+    单条格式：(文本1, 文本2, label)
+    """
+    D = []
+    i = 1
+    with open(filename, encoding='utf-8') as f:
+        for l in f:
+            if i == 1: # 跳过数据第一行
+                i = 2
+            else:
+                _,_,_, text1, text2  = l.strip().split('\t')
+                D.append((text1, text2, 0))
     return D
 
 # 加载数据集
@@ -92,7 +110,6 @@ model.summary()
 model.compile(
     loss='sparse_categorical_crossentropy',
     optimizer=Adam(2e-5),  # 用足够小的学习率
-    # optimizer=PiecewiseLinearLearningRate(Adam(5e-5), {10000: 1, 30000: 0.1}),
     metrics=['accuracy'],
 )
 
@@ -131,7 +148,27 @@ class Evaluator(keras.callbacks.Callback):
             (val_acc, self.best_val_acc, f1)
         )
 
+def test_predict(in_file, out_file):
+    """输出测试结果到文件
+    结果文件可以提交到 https://gluebenchmark.com 评测。
+    """
+    test_data = load_data_test(in_file)
+    test_generator = data_generator(test_data, batch_size)
 
+    results = []
+    for x_true, _ in tqdm(test_generator, ncols=0):
+        y_pred = model.predict(x_true).argmax(axis=1)
+        results.extend(y_pred)
+        
+    with open(out_file,'w',encoding='utf-8') as f:
+        csv_writer = csv.writer(f, delimiter='\t')
+        csv_writer.writerow(["index","prediction"])
+        # 写入tsv文件内容
+        for i, pred in enumerate(results):
+            csv_writer.writerow([i,pred])
+        # 关闭文件
+    f.close()
+    
 if __name__ == '__main__':
 
     evaluator = Evaluator()
@@ -142,7 +179,13 @@ if __name__ == '__main__':
         epochs=10,
         callbacks=[evaluator]
     )
-
+    model.load_weights('best_model_MRPC.weights')
+#   预测测试集，输出到结果文件
+    test_predict(
+        in_file = './datasets/MRPC/test.tsv',
+        out_file = './results/MRPC.tsv'
+    )
+    
 else:
 
     model.load_weights('best_model_MRPC.weights')
