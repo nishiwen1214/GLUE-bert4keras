@@ -15,10 +15,10 @@ Evaluation](https://gluebenchmark.com/)
 
 | Task  | Metric                       | [BERT-base (Huggingface)](https://github.com/huggingface/transformers/tree/master/examples/pytorch/text-classification?fbclid=IwAR0Y4_Eer7ovaEJpRMpE1S91AsrOdEK97-iah6mupW9RATs2XMPVzQZCNz8) | [BERT-base (Our)](https://github.com/nishiwen1214/GLUE-bert4keras)|
 |-------|------------------------------|-------------|---------------|
-| CoLA  | Matthews corr                | 56.53       | 60.07         |
+| CoLA  | Matthews corr                | 56.53       | 61.53         |
 | SST-2 | Accuracy                     | 92.32       | 92.89         |
 | MRPC  | F1/Accuracy                  | 88.85/84.07 | 88.53/84.17   |
-| STS-B | Pearson/Spearman corr.       | 88.64/88.48 | 89.31/88.90   |
+| STS-B | Pearson/Spearman corr.       | 88.64/88.48 | 89.20/88.77   |
 | QQP   | Accuracy/F1                  | 90.71/87.49 | 90.81/87.66   |
 | MNLI  | Matched acc./Mismatched acc. | 83.91/84.10 | 84.02/84.24   |
 | QNLI  | Accuracy                     | 90.66       | 91.42         |
