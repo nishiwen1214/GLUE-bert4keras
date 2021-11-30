@@ -3,7 +3,6 @@
 # 句子对分类任务，QQP数据集
 # val_acc: 88.7071, test_acc: 87.0320
 
-import numpy as np
 from bert4keras.backend import keras, set_gelu, K
 from bert4keras.tokenizers import Tokenizer
 from bert4keras.models import build_transformer_model
