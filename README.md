@@ -20,7 +20,7 @@ Evaluation](https://gluebenchmark.com/)
 | STS-B | Pearson/Spearman corr        | 88.64/88.48 | 89.20/88.77   |90.97/90.75    |
 | QQP   | Accuracy/F1                  | 90.71/87.49 | 90.81/87.66   |90.81/87.66    |
 | MNLI  | M acc/MisM acc               | 83.91/84.10 | 84.02/84.24   |84.02/84.24    |
-| QNLI  | Accuracy                     | 90.66       | 91.42         |91.42          |
+| QNLI  | Accuracy                     | 90.66       | 91.42         |92.11          |
 | RTE   | Accuracy                     | 65.70       | 69.68         |81.23          |
 | WNLI  | Accuracy                     | 56.34       | 56.34         |64.79          |
 
