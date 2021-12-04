@@ -17,7 +17,7 @@ Evaluation](https://gluebenchmark.com/)
 | CoLA  | Matthews corr                | 56.53       | 61.53         |65.63          |
 | SST-2 | Accuracy                     | 92.32       | 92.66         |94.04          |
 | MRPC  | F1/Accuracy                  | 88.85/84.07 | 88.53/84.17   |90.83/87.71    |
-| STS-B | Pearson/Spearman corr        | 88.64/88.48 | 89.20/88.77   |89.20/88.77    |
+| STS-B | Pearson/Spearman corr        | 88.64/88.48 | 89.20/88.77   |90.97/90.79    |
 | QQP   | Accuracy/F1                  | 90.71/87.49 | 90.81/87.66   |90.81/87.66    |
 | MNLI  | M acc/MisM acc               | 83.91/84.10 | 84.02/84.24   |84.02/84.24    |
 | QNLI  | Accuracy                     | 90.66       | 91.42         |91.42          |
