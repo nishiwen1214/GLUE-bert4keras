@@ -12,18 +12,19 @@ Evaluation](https://gluebenchmark.com/)
 ### 实验结果：
 - val set:
 
-| Task  | Metric                       | [BERT-base (Huggingface)](https://github.com/huggingface/transformers/tree/master/examples/pytorch/text-classification?fbclid=IwAR0Y4_Eer7ovaEJpRMpE1S91AsrOdEK97-iah6mupW9RATs2XMPVzQZCNz8) | [BERT-base (Our)](https://github.com/nishiwen1214/GLUE-bert4keras)|ELECTRA-base (Our)|
-|-------|------------------------------|-------------|---------------|---------------|
-| CoLA  | Matthews corr                | 56.53       | 61.53         |65.63          |
-| SST-2 | Accuracy                     | 92.32       | 92.66         |94.04          |
-| MRPC  | F1/Accuracy                  | 88.85/84.07 | 88.53/84.17   |90.83/87.71    |
-| STS-B | Pearson/Spearman corr        | 88.64/88.48 | 89.20/88.77   |90.97/90.75    |
-| QQP   | Accuracy/F1                  | 90.71/87.49 | 90.81/87.66   |91.23/88.33    |
-| MNLI  | M acc/MisM acc               | 83.91/84.10 | 84.02/84.24   |88.32/88.16    |
-| QNLI  | Accuracy                     | 90.66       | 91.42         |92.11          |
-| RTE   | Accuracy                     | 65.70       | 69.68         |81.23          |
-| WNLI  | Accuracy                     | 56.34       | 56.34         |64.79          |
+| Task  | Metric                       | [BERT-base*](https://github.com/huggingface/transformers/tree/master/examples/pytorch/text-classification?fbclid=IwAR0Y4_Eer7ovaEJpRMpE1S91AsrOdEK97-iah6mupW9RATs2XMPVzQZCNz8) | [BERT-base#](https://github.com/nishiwen1214/GLUE-bert4keras)|ELECTRA-base#|ELECTRA-large#|
+|-------|------------------------------|-------------|---------------|---------------|---------------|
+| CoLA  | Matthews corr                | 56.53       | 61.53         |65.63          |65.63          |
+| SST-2 | Accuracy                     | 92.32       | 92.66         |94.04          |94.04          |
+| MRPC  | F1/Accuracy                  | 88.85/84.07 | 88.53/84.17   |90.83/87.71    |90.83/87.71    |
+| STS-B | Pearson/Spearman corr        | 88.64/88.48 | 89.20/88.77   |90.97/90.75    |90.97/90.75    |
+| QQP   | Accuracy/F1                  | 90.71/87.49 | 90.81/87.66   |91.23/88.33    |91.23/88.33    |
+| MNLI  | M acc/MisM acc               | 83.91/84.10 | 84.02/84.24   |88.32/88.16    |88.32/88.16    |
+| QNLI  | Accuracy                     | 90.66       | 91.42         |92.11          |92.11          |
+| RTE   | Accuracy                     | 65.70       | 69.68         |81.23          |81.23          |
+| WNLI  | Accuracy                     | 56.34       | 56.34         |64.79          |64.79          |
 
+\* Huggingface         \# Our
 - test set:
 <img width="1367" alt="image" src="https://user-images.githubusercontent.com/56249874/143742252-4a2d69ba-2f6a-4989-a5f8-f69e1db56691.png">
 <img width="924" alt="image" src="https://user-images.githubusercontent.com/56249874/143735793-762babad-f43b-482e-87b5-61210720a34f.png">
