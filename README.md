@@ -39,3 +39,4 @@ Evaluation](https://gluebenchmark.com/)
 
 ### 更新
 - 2021.11.28，增加code的test set的预测功能，并且上传到GLUE网站进行评估，结果已公开。
+- 2021.12.07，增加ELECTRA-base和ELECTRA-large的dev set结果（代码暂时未公开）。
