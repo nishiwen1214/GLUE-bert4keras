@@ -14,15 +14,15 @@ Evaluation](https://gluebenchmark.com/)
 
 | Task  | Metric                       | [BERT-base*](https://github.com/huggingface/transformers/tree/master/examples/pytorch/text-classification?fbclid=IwAR0Y4_Eer7ovaEJpRMpE1S91AsrOdEK97-iah6mupW9RATs2XMPVzQZCNz8) | [BERT-base#](https://github.com/nishiwen1214/GLUE-bert4keras)|ELECTRA-base#|ELECTRA-large#|
 |-------|------------------------------|-------------|---------------|---------------|---------------|
-| CoLA  | Matthews corr                | 56.53       | 61.53         |65.63          |65.63          |
-| SST-2 | Accuracy                     | 92.32       | 92.66         |94.04          |94.04          |
-| MRPC  | F1/Accuracy                  | 88.85/84.07 | 88.53/84.17   |90.83/87.71    |90.83/87.71    |
+| CoLA  | Matthews corr                | 56.53       | 61.53         |65.63          |68.99          |
+| SST-2 | Accuracy                     | 92.32       | 92.66         |94.04          |94.95          |
+| MRPC  | F1/Accuracy                  | 88.85/84.07 | 88.53/84.17   |90.83/87.71    |91.78/89.16    |
 | STS-B | Pearson/Spearman corr        | 88.64/88.48 | 89.20/88.77   |90.97/90.75    |90.97/90.75    |
-| QQP   | Accuracy/F1                  | 90.71/87.49 | 90.81/87.66   |91.23/88.33    |91.23/88.33    |
+| QQP   | Accuracy/F1                  | 90.71/87.49 | 90.81/87.66   |91.23/88.33    |92.20/89.70    |
 | MNLI  | M acc/MisM acc               | 83.91/84.10 | 84.02/84.24   |88.32/88.16    |88.32/88.16    |
-| QNLI  | Accuracy                     | 90.66       | 91.42         |92.11          |92.11          |
-| RTE   | Accuracy                     | 65.70       | 69.68         |81.23          |81.23          |
-| WNLI  | Accuracy                     | 56.34       | 56.34         |64.79          |64.79          |
+| QNLI  | Accuracy                     | 90.66       | 91.42         |92.11          |93.74          |
+| RTE   | Accuracy                     | 65.70       | 69.68         |81.23          |88.09          |
+| WNLI  | Accuracy                     | 56.34       | 56.34         |64.79          |84.51          |
 
 \* Huggingface         \# Our
 - test set:
