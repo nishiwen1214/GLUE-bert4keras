@@ -35,7 +35,7 @@ Evaluation](https://gluebenchmark.com/)
 
 ### 环境
 - 软件：bert4keras>=0.10.8, tensorflow = 1.15.0, keras = 2.3.1；
-- 硬件：bert结果是用RTX 2080（12G）跑出来的，ELECTRA是用RTX 3090 (24G)。
+- 硬件：bert结果是用RTX 2080（12G）跑出来的，electra是用RTX 3090 (24G),注意3090显卡不支持Google的tf 1.x系列，需使用Nvidia的tf.15。
 
 ### 更新
 - 2021.11.28，增加code的test set的预测功能，并且上传到GLUE网站进行评估，结果已公开。
