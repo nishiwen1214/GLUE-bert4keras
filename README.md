@@ -21,7 +21,7 @@ Evaluation](https://gluebenchmark.com/)
 | QQP   | Accuracy/F1                  | 90.71/87.49 | 90.81/87.66   |91.23/88.33    |92.20/89.70    |
 | MNLI  | M acc/MisM acc               | 83.91/84.10 | 84.02/84.24   |88.32/88.16    |91.10/91.15    |
 | QNLI  | Accuracy                     | 90.66       | 91.42         |92.11          |93.74          |
-| RTE   | Accuracy                     | 65.70       | 69.68         |81.23          |88.09          |
+| RTE   | Accuracy                     | 65.70       | 69.68         |81.23          |87.73          |
 | WNLI  | Accuracy                     | 56.34       | 56.34         |64.79          |84.51          |
 
 \* Huggingface         \# Our
