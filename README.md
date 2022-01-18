@@ -41,6 +41,3 @@ Evaluation](https://gluebenchmark.com/)
 - 2021.11.28，增加code的test set的预测功能，并且上传到GLUE网站进行评估，结果已公开。
 - 2021.12.07，增加ELECTRA-base和ELECTRA-large的dev set结果（代码暂时未公开）。
 - 增加SuperGLUE基准代码 https://github.com/nishiwen1214/SuperGLUE-bert4keras
-- 2021.12.07，增加ELECTRA-base和ELECTRA-large的dev set结果（代码暂时未公开）。Super
-- 2021.12.07，增加ELECTRA-base和ELECTRA-large的dev set结果（代码暂时未公开）。GLUE
-- 2021.12.07，增加ELECTRA-base和ELECTRA-large的dev set结果（代码暂时未公开）。
