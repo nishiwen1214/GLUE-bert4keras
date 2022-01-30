@@ -23,6 +23,9 @@ labels = ['entailment', 'neutral', 'contradiction']
 num_classes = len(labels)
 maxlen = 128
 batch_size = 32
+epochs = 10
+lr = 2e-5
+
 config_path = './uncased_L-12_H-768_A-12/bert_config.json'
 checkpoint_path = './uncased_L-12_H-768_A-12/bert_model.ckpt'
 dict_path = './uncased_L-12_H-768_A-12/vocab.txt'
@@ -127,7 +130,7 @@ model.summary()
 
 model.compile(
     loss='sparse_categorical_crossentropy',
-    optimizer=Adam(2e-5),  # 用足够小的学习率
+    optimizer=Adam(lr),  # 用足够小的学习率
     metrics=['accuracy'],
 )
 
@@ -191,7 +194,7 @@ if __name__ == '__main__':
     model.fit(
         train_generator.forfit(),
         steps_per_epoch=len(train_generator),
-        epochs=10,
+        epochs=epochs,
         callbacks=[evaluator]
     )
     
