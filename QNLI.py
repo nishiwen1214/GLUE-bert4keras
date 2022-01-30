@@ -23,6 +23,9 @@ labels = ['entailment', 'not_entailment']
 num_classes = len(labels)
 maxlen = 128
 batch_size = 32
+epochs = 10
+lr = 2e-5
+
 config_path = './uncased_L-12_H-768_A-12/bert_config.json'
 checkpoint_path = './uncased_L-12_H-768_A-12/bert_model.ckpt'
 dict_path = './uncased_L-12_H-768_A-12/vocab.txt'
@@ -99,7 +102,7 @@ bert = build_transformer_model(
 
 output = Dropout(rate=0.1)(bert.model.output)
 output = Dense(
-    units=2, activation='softmax', kernel_initializer=bert.initializer
+    units=num_classes, activation='softmax', kernel_initializer=bert.initializer
 )(output)
 
 model = keras.models.Model(bert.model.input, output)
@@ -107,7 +110,7 @@ model.summary()
 
 model.compile(
     loss='sparse_categorical_crossentropy',
-    optimizer=Adam(2e-5),  # 用足够小的学习率
+    optimizer=Adam(lr),  # 用足够小的学习率
     metrics=['accuracy'],
 )
 
@@ -165,16 +168,16 @@ def test_predict(in_file, out_file):
 
 if __name__ == '__main__':
 
-#     evaluator = Evaluator()
+    evaluator = Evaluator()
 
-#     model.fit(
-#         train_generator.forfit(),
-#         steps_per_epoch=len(train_generator),
-#         epochs=10,
-#         callbacks=[evaluator]
-#     )
+    model.fit(
+        train_generator.forfit(),
+        steps_per_epoch=len(train_generator),
+        epochs=epochs,
+        callbacks=[evaluator]
+    )
     model.load_weights('best_model_QNLI.weights')
-    #   预测测试集，输出到结果文件
+    #  预测测试集，输出到结果文件
     test_predict(
         in_file = './datasets/QNLI/test.tsv',
         out_file = './results/QNLI.tsv'
