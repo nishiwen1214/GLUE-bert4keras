@@ -21,6 +21,8 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 num_classes = 2
 maxlen = 128
 batch_size = 32
+epochs = 15
+lr = 2e-5
 
 # BERT base
 config_path = './uncased_L-12_H-768_A-12/bert_config.json'
@@ -102,7 +104,7 @@ bert = build_transformer_model(
 
 output = Dropout(rate=0.1)(bert.model.output)
 output = Dense(
-    units=2, activation='softmax', kernel_initializer=bert.initializer
+    units=num_classes, activation='softmax', kernel_initializer=bert.initializer
 )(output)
 
 model = keras.models.Model(bert.model.input, output)
@@ -110,7 +112,7 @@ model.summary()
 
 model.compile(
     loss='sparse_categorical_crossentropy',
-    optimizer=Adam(2e-5),
+    optimizer=Adam(lr),
     metrics=['accuracy'],
 )
 
@@ -169,12 +171,12 @@ if __name__ == '__main__':
     model.fit(
         train_generator.forfit(),
         steps_per_epoch=len(train_generator),
-        epochs=10,
+        epochs=epochs,
         callbacks=[evaluator]
     )
     
     model.load_weights('best_model_SST-2.weights')
-    #   预测测试集，输出到结果文件
+    # 预测测试集，输出到结果文件
     test_predict(
         in_file = './datasets/SST-2/test.tsv',
         out_file = './results/SST-2.tsv'
